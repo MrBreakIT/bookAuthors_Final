@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit this Book</title>
+
+
+</head>
+
+<body>
+    <h1>Edit Book Information for:</h1>
+    <h2><i> {{booktoEdit.title}} </i></h2>
+    {% if messages %}
+    <ul class="messages">
+             {% for message in messages %}
+                <li>{{ message }}</li>
+            {% endfor %}
+    </ul>
+    {% endif %}
+    <form action="/updateBook/{{booktoEdit.id}}" method="POST">
+        {% csrf_token %}
+        <div>
+            <input type="text" name="title" id="title" placeholder="{{booktoEdit.title}}">
+        </div>
+
+        <div>
+            <textarea name="desc" id="" cols="30" rows="7" placeholder="{{booktoEdit.desc}}"></textarea>
+        </div>
+        <input type="submit" value="Update Record">
+    </form>
+
+
+
+
+</body>
+
+</html>

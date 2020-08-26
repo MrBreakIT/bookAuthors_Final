@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Show Title Info</title>
+
+    </head>
+
+
+    <body>
+        <h1>--Info about this Author--</h1>
+        <h3>Authors Name: {{authorinfo.fname}} {{authorinfo.lname}}</h3>
+        <p>Books written:</p>
+        <!-- {{authorinfo.books.all}} -->
+        <ul>{% for books in authorinfo.books.all %}
+            <li>{{books.title}}</li>
+            {% endfor %}
+        </ul>
+        <p>Notes:  <i>{{authorinfo.notes}}</i></p>
+        <div>
+            <h5>Add title to this author</h5>
+            <form action="/addBookToAuthor/{{authorinfo.id}}" method="POST">
+                {% csrf_token %}
+                <select name="bookinfo" id="">
+                    {% for books in allBooks %}
+                    <option value="{{books.id}}">{{books.title}}</option>  
+                    {% endfor %}            
+                </select>
+                <input type="submit" value="Add Title">
+            </form>
+            <form action="/authorsHomepage">
+                {% csrf_token %}
+                <input type="submit" value="Authors Homepage">                
+            </form>
+            
+
+        </div>
+
+    </body>
+
+</html>

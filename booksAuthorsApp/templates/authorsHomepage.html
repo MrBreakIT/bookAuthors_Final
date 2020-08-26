@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Author Homepage</title>
+
+    <style>
+        body {
+            background-color: lightslategray;
+        }
+
+        #container {
+            /* background-color: darkcyan; */
+            display: flex;
+            justify-content: space-evenly;
+            align-items: center;
+        }
+
+        table {
+            font-family: Arial, sans-serif;
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        td,
+        th {
+            border: 1px solid #dddddd;
+            text-align: left;
+            padding: 8px;
+        }
+
+        tr:nth-child(even) {
+            background-color: #dddddd;
+        }
+    </style>
+
+</head>
+
+<body>
+    <div id="container">
+        <div id="leftside">
+            <h1>Add an Author!</h1>
+            {% if messages %}
+            <ul class="messages">
+                     {% for message in messages %}
+                        <li>{{ message }}</li>
+                    {% endfor %}
+            </ul>
+            {% endif %}
+            <form action="/createAuthor" method="post">
+                {% csrf_token %}
+                <div>
+                    <input type="text" name="fname" id="author" placeholder="First Name">
+                    <div>
+                        <input type="text" name="lname" id="author" placeholder="Last Name">
+                    </div>
+                </div>
+                <div>
+                    <div>
+                        <textarea name="notes" id="" cols="30" rows="7" placeholder="Authors Notes"></textarea>
+                    </div>
+                    <input type="submit" value="Add Author">
+                </div>
+            </form>
+            <!-- <form action="/createAuthor" method="post">
+                {% csrf_token %}
+                <input type="submit" value="Add Author"> -->
+
+        </div>
+
+        <div id="rightside">
+            <table>
+                <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Notes</th>
+                    <th>Action</th>
+                </tr>
+                {% for author in allTheAuthors %}
+                <tr>
+                    <td>{{author.id}}</td>
+                    <td>{{author.fname}} {{author.lname}}</td>
+                    <td>{{author.notes}}</td>
+                    <td><a href="/author/{{author.id}}">View</a> | <a href="/editAuthor/{{author.id}}">Edit</a> | <a
+                            href="/deleteAuthor/{{author.id}}">Delete</a></td>
+                </tr>
+                {% endfor %}
+            </table>
+        </div>
+    </div>
+</body>
+
+</html>

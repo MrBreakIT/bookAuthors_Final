@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home Page</title>
+
+</head>
+
+
+<body>
+    <h1>Welcome to your navigation page: {{loggedinuser.firstName}} {{loggedinuser.lastName}}</h1>
+    <p>Choose a section that you would like to view or update:</p>
+    <form action="/booksHomepage">
+        <button type="submit">View Books</button>
+    </form>
+
+    <form action="/authorsHomepage">
+        <button type="submit">View Authors</button>
+    </form>
+
+    <form action="/logout">
+        <button type="submit">Log Out: Good Bye!</button>
+    </form>
+
+</body>
+
+</html>
